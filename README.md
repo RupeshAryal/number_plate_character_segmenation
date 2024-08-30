@@ -31,7 +31,7 @@
   - Number plates having small size, but many characters (eg: Number plates from bike) were not segmented properly.
   - While, the algorithm works and the order of character is correct in case of single row number plate. The characters are not ordered in a way a normal person reads a number plate. However, I am exploring possible use of histogram based line segmentation , which uses distribution of intensities to seperate the lines.
 
-##Future Direction
+## Future Direction
 
 In the next version of the project I will be using CNN based architecture for character segmentation and detection.
 
