@@ -27,24 +27,35 @@ def adjust_size(image_path = None, image = None):
 
 def get_prediction(image_array):
 
-  image, cropped_image, contrast = image_preprocessing(image= image_array)
-  cropped_image_copy = cropped_image.copy()
+  processed_image, resized_image_original, contrast_image = image_preprocessing(image= image_array)
 
-  cont, _ = cv.findContours(image, cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE)
+  cropped_image_copy = resized_image_original.copy()
+
+  # find all the contours from the image
+  cont, _ = cv.findContours(processed_image, cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE)
+
+  #extract contours based on some threshold and rule
   final_contours = get_final_contours(cont)
+
 
   word = []
 
-  for i in range(len(final_contours)):
-    x, y, w, h = cv.boundingRect(final_contours[i])
+  for contour in final_contours:
 
-    final_x = x - 2
-    final_y = y - 2
+    #finding the 
+    x, y, w, h = cv.boundingRect(contour)
+
+    final_x = abs(x - 2)
+    final_y = abs(y - 2)
     final_w = w + 4
     final_h = h + 4
 
-    cv.rectangle(cropped_image, (final_x, final_y), (x + w + 4, y + h + 4), (0,255,0), 2)
+    print(final_x, final_y)
+
+    cv.rectangle(resized_image_original, (final_x, final_y), (x + w + 4, y + h + 4), (0,255,0), 2)
     crop = cropped_image_copy[final_y:final_y+h + 4, final_x: final_x+w + 4]
+
+    # print(crop)
 
 
     resized_image = cv.resize(crop, (32,32))
@@ -52,11 +63,8 @@ def get_prediction(image_array):
     index = prediction(preprocessed_image)
     word.append(index)
 
-#   cv2_imshow(cropped_image)
-#   cv2_imshow(image)
-#   print(' '.join(word))
 
-  return (' '.join(word), cropped_image, contrast)
+  return (' '.join(word), resized_image_original, contrast_image)
 
 
   

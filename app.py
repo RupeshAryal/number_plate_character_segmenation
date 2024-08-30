@@ -17,7 +17,7 @@ if image_file:
     image_array = np.array(image_final)
 
     prediction, bbox, contrast= get_prediction(image_array)
-    st.image(contrast)
+    # st.image(contrast)
     st.image(bbox)
 
 
