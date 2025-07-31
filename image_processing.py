@@ -4,7 +4,7 @@ from utils import list_of_character_classes
 
 import numpy as np
 
-def image_preprocessing(image_path = None, image = None):
+def image_preprocessing(image_path = None, image):
   if image_path:
      image = cv.imread(image_path)
 
