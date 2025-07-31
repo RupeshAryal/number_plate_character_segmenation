@@ -1,5 +1,8 @@
 ## number_plate_character_segmenation
 
+ - Training notebook can be found here: https://drive.google.com/file/d/1ozjdaM5dmdHovWeixOHNtsXzgdFvNjFc/view?usp=sharing
+
+
 ## To run the algorithm in browser, use the following step:
 
 - Clone the Repository into your local machine.
